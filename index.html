@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pixel Art Maker!</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+</head>
+<body class="squares-bg">
+    <div class="header">
+        <h1>Lab: Pixel Art Maker</h1>
+    </div>
+<div class="gridContainer">
+    <div class="gridControl">
+        <h2>Choose Grid Size</h2>
+        <form id="sizePicker">
+            <span class="gridSizeLabel">Grid Height:</span><span id="gridHeightDisplay"> 15</span>
+            <input type="range" id="inputHeight" class="slider" title="Set grid height" name="height" min="1" max= "50" value="15">
+            <br>
+            <span class="gridSizeLabel">Grid Width:</span><span id="gridWidthDisplay">  15</span>
+            <input type="range" id="inputWidth" class="slider" title="Set grid width" name="width" min="1" max="50" value="15">
+            <br>
+            <input class="button" type="submit" id="createGrid" value="Create Grid" title="Makes a grid of tiles using the values above">
+        </form>
+
+        <h2>Pick a Color: </h2>
+        <input type="color" id="colorPicker" value="#ff0000" title="Set PAINT color">
+        <br>
+        <h2>Mode: </h2><span class="paintOrErase"> PAINT</span>
+        <br>
+        <button id="paintBtn" class="button" title="Set mode to PAINT" type="button">
+            <i class="fas fa-paint-brush"></i>
+        </button>
+        <button id="eraseBtn" class="button" title="Set mode to ERASE" type="button">
+            <i class="fas fa-eraser"></i>
+        </button>
+    </div> <!-- end gridControl -->
+    <div class="gridCanvas">
+        <h2>Design Canvas</h2>
+        <table id="pixelCanvas"></table>
+        <p class="legend"><em>(Click to paint or erase. Left mouse button for multi-tile action)</em></p>
+    </div> <!-- end gridCanvas -->
+</div> <!-- end cssGirdcontainer -->
+    <script src="designs.js"></script>
+</body>
+</html>
