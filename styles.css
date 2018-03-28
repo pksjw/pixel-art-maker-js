@@ -93,6 +93,7 @@ table,
 tr,
 td {
     border: 1px solid black;
+    cursor: pointer;
 }
 
 table {
@@ -114,8 +115,11 @@ p {
     margin: 1em 0 1em;
 }
 
-.legend {
+.noLegend {
     display: none;
+}
+.legend {
+    display: block;
 }
 
 .gridSizeLabel {
