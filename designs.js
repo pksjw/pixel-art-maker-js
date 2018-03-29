@@ -8,13 +8,14 @@ const PAINT = 'PAINT';
 const ERASE = 'ERASE';
 const theGridSize = document.forms.gridSize;
 const userColor = document.getElementById('colorPicker');
-const modeDisplay = document.getElementById('modeDisplay');
+const tileMode = document.getElementById('modeDisplay');
 const displayHeight = document.getElementById('gridHeightDisplay');
 const displayWidth = document.getElementById('gridWidthDisplay');
 const userHeight = document.getElementById('inputHeight');
 const userWidth = document.getElementById('inputWidth');
     // let grid = $('#pixelCanvas');
 const grid = document.getElementById('pixelCanvas');
+
 let gridTileMode = PAINT // controls paint or erase of grid cells (td's)
 
 // $('#createGrid').on('click', function makeGrid(event) {gridSize
@@ -48,6 +49,7 @@ theGridSize.submitGrid.onclick = function makeGrid(event) {
     grid.insertAdjacentHTML('afterbegin', tableRows); // add grid to DOM
     // $('.legend').show(); // <p> tag with instructions for mouseover
     document.getElementById('legend').className = "legend";
+    // let tiles = grid.getElementsByTagName('td'); // cache tiles after grid creation
 
 // Listen for click to paint or erase a tile
     // grid.on('click', 'td', function() {
@@ -85,13 +87,9 @@ theGridSize.submitGrid.onclick = function makeGrid(event) {
 
 function paintEraseTiles(targetCell) {
     if (targetCell.nodeName === 'TD') {
-        if (gridTileMode === PAINT) {
-            // $(targetCell).css('background-color', $('#colorPicker').val());
-            targetCell.style.backgroundColor =  userColor.value;
-        } else if (gridTileMode === ERASE) {
-            // $(targetCell).css('background-color', 'transparent');
-            targetCell.style.backgroundColor =  "transparent";
-        }
+        targetCell.style.backgroundColor = gridTileMode === PAINT ? userColor.value : 'transparent';
+        //     // $(targetCell).css('background-color', $('#colorPicker').val());
+        //     // $(targetCell).css('background-color', 'transparent');
     } else {
         console.log("Nice try: " + targetCell.nodeName + " talk to the hand!");
     }
@@ -116,17 +114,23 @@ theGridSize.width.oninput = function (){
 // $('.paintOrErase').text(' ' + gridTileMode);
 userColor.oninput = function (){
     gridTileMode = PAINT;
-    modeDisplay.innerHTML = ' ' + gridTileMode;
-    // document.getElementById('modeDisplay').innerHTML = ' ' + gridTileMode;
+    tileMode.innerHTML = ' ' + gridTileMode;
 };
+// Erase colors from the grid
+
+// clear.on('click', function(){
+document.getElementById('clearGrid').addEventListener('click', function() {
+    let tiles = grid.getElementsByTagName('td');
+    // grid.children().children().removeAttr("style");
+    for(let i = 0; i <= tiles.length; i++) {
+        tiles[i].style.backgroundColor = 'transparent';
+    }
+});
 
 // set the mode to PAINT or ERASE
 // $('button').on('click', function(event) {
 document.getElementById('mode').addEventListener('click', function(event) {
-    mode(event.target);
-}); // end button on click
-function mode(button) {
-    gridTileMode = button.className.indexOf('paint') >=0 ? PAINT : ERASE;
+    gridTileMode = event.target.className.indexOf('paint') >=0 ? PAINT : ERASE;
     // $('.paintOrErase').text(' ' + gridTileMode);
-    modeDisplay.innerHTML = ' ' + gridTileMode;
-} // end button mode display
+    tileMode.innerHTML = ' ' + gridTileMode;
+}); // end mode change / display
