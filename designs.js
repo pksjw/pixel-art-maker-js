@@ -15,13 +15,14 @@ const userHeight = document.getElementById('inputHeight');
 const userWidth = document.getElementById('inputWidth');
     // let grid = $('#pixelCanvas');
 const grid = document.getElementById('pixelCanvas');
-
+// document.getElementById('header').style.animationPlayState="paused";
 let gridTileMode = PAINT // controls paint or erase of grid cells (td's)
 
 // $('#createGrid').on('click', function makeGrid(event) {gridSize
 theGridSize.submitGrid.onclick = function makeGrid(event) {
     // prevent page refreshing when clicking submit
     event.preventDefault();
+    // grid.className = grid.className.replace(/\bflyItIn\b/g, "");
     let mouseIsDown = false;
     // let rows = $("#inputHeight").val();
     // let columns = $("#inputWidth").val();
@@ -49,8 +50,10 @@ theGridSize.submitGrid.onclick = function makeGrid(event) {
     grid.insertAdjacentHTML('afterbegin', tableRows); // add grid to DOM
     // $('.legend').show(); // <p> tag with instructions for mouseover
     document.getElementById('legend').className = "legend";
-    // let tiles = grid.getElementsByTagName('td'); // cache tiles after grid creation
+    grid.classList.toggle('flyItIn'); // Fly in effect for table
+    grid.classList.toggle('flyItIn2'); // use two to trigger reflow
 
+    // grid.style.animationPlayState="paused";
 // Listen for click to paint or erase a tile
     // grid.on('click', 'td', function() {
     //     paintEraseTiles($(this));
