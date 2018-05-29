@@ -15,7 +15,7 @@ const userHeight = document.getElementById('inputHeight');
 const userWidth = document.getElementById('inputWidth');
     // let grid = $('#pixelCanvas');
 const grid = document.getElementById('pixelCanvas');
-// document.getElementById('header').style.animationPlayState="paused";
+const gridCanvas = document.getElementById('gridCanvas');
 let gridTileMode = PAINT // controls paint or erase of grid cells (td's)
 
 // $('#createGrid').on('click', function makeGrid(event) {gridSize
@@ -123,6 +123,7 @@ userColor.oninput = function (){
 
 // clear.on('click', function(){
 document.getElementById('clearGrid').addEventListener('click', function() {
+    gridCanvas.classList.toggle('rotateCanvas'); // rotate the Design Canvas div
     let tiles = grid.getElementsByTagName('td');
     // grid.children().children().removeAttr("style");
     for(let i = 0; i <= tiles.length; i++) {

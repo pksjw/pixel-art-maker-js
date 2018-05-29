@@ -318,6 +318,24 @@ input[type=range]:hover::-ms-thumb {
     }
 }
 
+/* rotates the Design Canvas div */
+
+.rotationTime {
+    -webkit-transition: all 4s linear;
+    -moz-transition: all 4s linear;
+    -ms-transition: all 4s linear;
+    -o-transition: all 4s linear;
+    transition: all 4s linear;
+}
+
+.rotateCanvas {
+    -webkit-transform: rotateX(360deg) rotateY(360deg);
+    -moz-transform: rotateX(360deg) rotateY(360deg);
+    -ms-transform: rotateX(360deg) rotateY(360deg);
+    -o-transform: rotateX(360deg) rotateY(360deg);
+    transform: rotateX(360deg) rotateY(360deg); 
+}
+
 /* make adjustments for smaller devices */
 
 @media (max-width: 700px) {
